@@ -9,8 +9,8 @@ pipeline {
         stage('Commit Changes') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/kumaprak/DevOps-Demo-WebApp']]])
-            }
-        }
+            }//
+        }//
     
         
         // stage ('Code Quality') {
