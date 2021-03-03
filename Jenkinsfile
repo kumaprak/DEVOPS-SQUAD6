@@ -57,7 +57,7 @@ pipeline {
         
         stage ('Deploy to Test') {
             steps{
-            deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://3.142.69.110:8080/')], contextPath: '/QAWebapp', war: '**/*.war'
+            deploy adapters: [tomcat8(credentialsId: 'tomcat-1', path: '', url: 'http://3.142.69.110:8080/')], contextPath: '/QAWebapp', war: '**/*.war'
         }
     }
     
