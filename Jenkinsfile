@@ -33,16 +33,16 @@ pipeline {
         //     }
         // }
         
-        stage ('Code Quality'){
-            environment {
-                scannerhome = tool 'SonarQube'
-            }
-                steps {
-                    withSonarQubeEnv('sonarqube') {
+        //stage ('Code Quality'){
+        //    environment {
+        //        scannerhome = tool 'SonarQube'
+        //    }
+        //        steps {
+        //            withSonarQubeEnv('sonarqube') {
 
-          sh "${scannerHome}/bin/sonar-scanner -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.projectKey=WEBPOC:AVNCommunication -Dsonar.sources=. -Dsonar.tests=. -Dsonar.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.test.exclusions=**/test/java/servlet/createpage_junit.java -Dsonar.login=admin -Dsonar.password=sonar"
+        //  sh "${scannerHome}/bin/sonar-scanner -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.projectKey=WEBPOC:AVNCommunication -Dsonar.sources=. -Dsonar.tests=. -Dsonar.inclusions=**/test/java/servlet/createpage_junit.java -Dsonar.test.exclusions=**/test/java/servlet/createpage_junit.java -Dsonar.login=admin -Dsonar.password=sonar"
 
-        }
+        //}
 
 
       }
@@ -57,7 +57,7 @@ pipeline {
         
         stage ('Deploy to Test') {
             steps{
-            deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://34.122.127.79:8080/')], contextPath: '/QAWebapp', war: '**/*.war'
+            deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://3.142.69.110:8080/')], contextPath: '/QAWebapp', war: '**/*.war'
         }
     }
     
@@ -97,7 +97,7 @@ pipeline {
         
         stage('Deploy to Prod'){
             steps{
-                deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://34.69.94.247:8080/')], contextPath: '/ProdWebapp', war: '**/*.war'
+                deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://18.225.32.228:8080/')], contextPath: '/ProdWebapp', war: '**/*.war'
             }
         }
         
